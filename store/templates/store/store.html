@@ -1,0 +1,24 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{%block content%}
+    <div class="row">
+        
+        {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.image.url}}">
+            <div class="box-element product">
+                <h6><strong>{{product.name}}</strong></h6>
+                <hr>
+                {% comment %} adiciona as classes que vao ser tratadas com js para discernir o que deve ser feito apos o click dos botões, no caso retornar o id do produto e a ação "add" {% endcomment %}
+                <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart" >Adicionar ao carrinho</button>
+                <h4 style="display: inline-block;" style="float: right;" >
+                    <strong>${{product.price|floatformat:2}}</strong>
+                </h4>
+                
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock content%}
